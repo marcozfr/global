@@ -1,5 +1,7 @@
 package com.labs.catalog.service.beans;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.context.annotation.Bean;
@@ -22,7 +24,7 @@ import com.labs.catalog.service.interfaces.WriteToFile;
 @ImportResource("global.xml")
 public class Application {
     
-    public static final Logger logger = LogManager.getLogger(Application.class);
+    protected final Log logger = LogFactory.getLog(getClass());
     
     @Bean
     @Conditional(FileCondition.class)

@@ -7,6 +7,8 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.context.ApplicationContext;
@@ -20,7 +22,7 @@ import com.labs.catalog.service.beans.extension.NotificationEvent;
 @WebListener
 public class GlobalContextListener implements ServletContextListener {
 
-    public static final Logger logger = LogManager.getLogger(InfoService.class);
+    protected final Log logger = LogFactory.getLog(getClass());
     
     @Override
     public void contextInitialized(ServletContextEvent sce) {
@@ -31,7 +33,7 @@ public class GlobalContextListener implements ServletContextListener {
         MessageSource msgCtx = (MessageSource)ctx;
         String globalEnabled = msgCtx.getMessage("global", null, Locale.getDefault());
         logger.info("Global enabled :" + globalEnabled);
-        logger.info("Spring app context startup date: {}",new Date(ctx.getStartupDate()));
+        logger.info("Spring app context startup date: " +new Date(ctx.getStartupDate()));
     }
 
     @Override

@@ -1,9 +1,11 @@
 package com.labs.catalog.data.repositories;
 
-import org.springframework.data.repository.CrudRepository;
+import java.util.List;
+
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 import com.global.model.entities.User;
 
-public interface UserRepository extends CrudRepository<User,Long> {
-
+public interface UserRepository extends PagingAndSortingRepository<User,Long> {
+    List<User> findByUsername(String username);
 }

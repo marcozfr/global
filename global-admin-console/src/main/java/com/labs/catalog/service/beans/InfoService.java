@@ -1,5 +1,7 @@
 package com.labs.catalog.service.beans;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.BeansException;
@@ -13,7 +15,7 @@ import com.labs.catalog.service.beans.extension.NotificationEvent;
 
 public class InfoService implements ApplicationContextAware, MessageSourceAware {
     
-    public static final Logger logger = LogManager.getLogger(InfoService.class);
+    protected final Log logger = LogFactory.getLog(getClass());
     
     private InfoMessage infoMessage;
     
@@ -30,11 +32,11 @@ public class InfoService implements ApplicationContextAware, MessageSourceAware 
     }
     
     public void init(){
-        logger.info("initializing bean {} in appContext {}",this.getClass(),this.appContext.getApplicationName());
+        logger.info("initializing bean "+this.getClass() + " in appContext "+this.appContext.getApplicationName());
     }
     
     public void end(){
-        logger.info("destroying bean {} out of appContext {}",this.getClass(),this.appContext.getApplicationName());
+        logger.info("Destroying bean "+this.getClass() + " in appContext "+this.appContext.getApplicationName());
     }
     
     static abstract class InfoMessage{

@@ -6,6 +6,8 @@ import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -18,7 +20,7 @@ import com.labs.catalog.service.beans.Application;
 @WebListener
 public class SessionListener implements HttpSessionListener {
 
-    public static final Logger logger = LogManager.getLogger(SessionListener.class);
+    protected final Log logger = LogFactory.getLog(getClass());
 
     /**
      * Default constructor. 
@@ -32,7 +34,7 @@ public class SessionListener implements HttpSessionListener {
      */
     public void sessionCreated(HttpSessionEvent se)  { 
          Date timeCreated =new Date(se.getSession().getCreationTime());
-         logger.info("Session created with id {}, at {}", se.getSession().getId(), timeCreated);
+         logger.info("Session created with id " + se.getSession().getId() +" at "+timeCreated);
     }
 
 	/**

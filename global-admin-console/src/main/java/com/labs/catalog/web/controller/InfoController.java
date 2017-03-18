@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Validator;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.BeanWrapper;
@@ -48,7 +50,7 @@ import com.labs.catalog.service.model.InfoData;
 @SessionAttributes("infoData")
 public class InfoController {
     
-    public static final Logger logger = LogManager.getLogger(InfoController.class);
+    protected final Log logger = LogFactory.getLog(getClass());
     
     @Autowired
     InfoService infoService;
