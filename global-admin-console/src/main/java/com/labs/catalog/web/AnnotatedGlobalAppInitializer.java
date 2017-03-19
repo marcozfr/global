@@ -2,7 +2,7 @@ package com.labs.catalog.web;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-public class AnnotatedCatalogAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+public class AnnotatedGlobalAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     @Override
     protected Class<?>[] getRootConfigClasses() {

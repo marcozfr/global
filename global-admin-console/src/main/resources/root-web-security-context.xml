@@ -1,0 +1,25 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+xmlns:beans="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/security
+		http://www.springframework.org/schema/security/spring-security.xsd">
+	
+	<http use-expressions="true">
+		<intercept-url pattern="/**" access="authenticated" />
+		<form-login />
+		<logout invalidate-session="true" logout-url="/logout"  delete-cookies="JSESSIONID" />
+		<session-management>
+			<concurrency-control max-sessions="1" error-if-maximum-exceeded="true"/>
+		</session-management>
+	</http>
+	<authentication-manager>
+		<authentication-provider>
+			<jdbc-user-service data-source-ref="dataSource" 
+				authorities-by-username-query="select u.username, p.profileName from global.user u , global.user_profile up, global.profile p where u.userid = up.user_id and up.profile_id = p.profileid and u.username = ?"
+				users-by-username-query="select username, password, 1 from user where username = ?"/>
+			<password-encoder ref="passwordEncoder"></password-encoder>
+		</authentication-provider>
+	</authentication-manager>
+</beans:beans>

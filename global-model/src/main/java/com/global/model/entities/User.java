@@ -2,6 +2,8 @@ package com.global.model.entities;
 
 import java.util.List;
 
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -21,14 +23,24 @@ public class User {
     private UserEntity userEntity;
     
     private String username;
+    
+    @Basic(fetch=FetchType.LAZY)
     private String password;
     
-    @ManyToMany(fetch=FetchType.LAZY)
+    @ManyToMany(fetch=FetchType.LAZY,cascade={CascadeType.REMOVE})
     @JoinTable(name="USER_PROFILE",
             joinColumns=@JoinColumn(name="USER_ID",referencedColumnName="userId"),
             inverseJoinColumns=@JoinColumn(name="PROFILE_ID",referencedColumnName="profileId"))
     private List<Profile> userProfiles;
     
+    public List<Profile> getUserProfiles() {
+        return userProfiles;
+    }
+
+    public void setUserProfiles(List<Profile> userProfiles) {
+        this.userProfiles = userProfiles;
+    }
+
     public UserEntity getUserEntity() {
         return userEntity;
     }
