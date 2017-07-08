@@ -131,7 +131,7 @@ public class InfoController {
     public ResponseEntity<InfoData> hello(HttpEntity<InfoData> entity){
         InfoData data = entity.getBody();
         HttpHeaders headers = entity.getHeaders();
-        data.setDetails("Sent to server on "+ new Date() +" @ Host: "+headers.getHost());
+        data.setDetails("Sent to server on "+ new Date() +" @ Host: "+headers.getOrigin());
 
         ResponseEntity<InfoData> responseEntity = new ResponseEntity<InfoData>(data, HttpStatus.OK);
         return responseEntity;

@@ -18,5 +18,5 @@ public class InstantiationTracingBeanPostProcessor implements BeanPostProcessor 
         logger.info("Initializing bean named "+beanName+" of class "+bean.getClass());
         return bean;
     }
-    
+
 }
