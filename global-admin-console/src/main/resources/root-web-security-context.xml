@@ -7,8 +7,12 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/security/spring-security.xsd">
 	
 	<http use-expressions="true">
+		<intercept-url pattern="/css/**" access="permitAll" />
+		<intercept-url pattern="/js/**" access="permitAll" />
+		<intercept-url pattern="/login" access="permitAll" />
 		<intercept-url pattern="/**" access="authenticated" />
-		<form-login />
+		<form-login login-page="/login" 
+					default-target-url="/user"/>
 		<logout invalidate-session="true" logout-url="/logout"  delete-cookies="JSESSIONID" />
 		<session-management>
 			<concurrency-control max-sessions="1" error-if-maximum-exceeded="true"/>

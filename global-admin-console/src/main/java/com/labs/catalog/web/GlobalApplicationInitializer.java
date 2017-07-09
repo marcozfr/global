@@ -14,7 +14,7 @@ public class GlobalApplicationInitializer implements WebApplicationInitializer{
     public void onStartup(ServletContext servletContext) throws ServletException {
         ServletRegistration.Dynamic registration = servletContext.addServlet("spring-root", new DispatcherServlet());
         registration.setLoadOnStartup(1);
-        registration.addMapping("/s/*");
+        registration.addMapping("/");
         
         servletContext.addListener(new ContextLoaderListener());
         servletContext.setInitParameter("contextClass", "org.springframework.web.context.support.AnnotationConfigWebApplicationContext");
